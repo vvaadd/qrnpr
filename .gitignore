@@ -1,6 +1,7 @@
 qrnpr.iml
 qrweb.iml
 qrgenerator.iml
+qrrest.iml
 .idea
 gradle
 gradlew
