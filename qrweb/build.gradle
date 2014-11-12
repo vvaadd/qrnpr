@@ -1,5 +1,10 @@
-version = "1.0"
+apply plugin: 'war'
+
+version = '1.0'
 
 dependencies{
     compile project(":qrgenerator")
+    compile project(":qrrest")
+
+    compile "javax.servlet:servlet-api:2.5"
 }

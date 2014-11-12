@@ -1,0 +1,5 @@
+version = '1.0'
+
+dependencies{
+    compile "org.glassfish.jersey.containers:jersey-container-servlet-core:2.9"
+}
