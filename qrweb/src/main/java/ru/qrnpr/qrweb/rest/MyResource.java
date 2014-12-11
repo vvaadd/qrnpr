@@ -1,4 +1,4 @@
-package ru.qrnpr.qrweb.api;
+package ru.qrnpr.qrweb.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
