@@ -1,7 +1,5 @@
 apply plugin: 'war'
 
-version = '1.0'
-
 dependencies{
     compile project(":qrgenerator")
     compile project(":qrrest")
