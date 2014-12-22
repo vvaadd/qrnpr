@@ -3,6 +3,4 @@ apply plugin: 'war'
 dependencies{
     compile project(":qrgenerator")
     compile project(":qrrest")
-
-    compile "javax.servlet:servlet-api:2.5"
 }

@@ -1,5 +1,8 @@
 version = '1.0'
 
-dependencies{
-    compile "org.glassfish.jersey.containers:jersey-container-servlet-core:2.9"
+dependencies {
+    compile project(":qrcore")
+
+    compile "org.glassfish.jersey.containers:jersey-container-servlet:2.14"
+    compile "org.glassfish.jersey.media:jersey-media-multipart:2.14"
 }

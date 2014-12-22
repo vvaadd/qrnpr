@@ -1,4 +1,4 @@
 rootProject.name = 'qrnpr'
 
-include 'qrgenerator', 'qrweb', 'qrrest'
+include 'qrgenerator', 'qrweb', 'qrrest', 'qrcore'
 
