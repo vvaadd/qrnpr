@@ -2,6 +2,7 @@ qrnpr.iml
 qrweb/qrweb.iml
 qrgenerator/qrgenerator.iml
 qrrest/qrrest.iml
+qrcore/qrcore.iml
 .idea
 gradle
 gradlew
