@@ -14,22 +14,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-/**
- * Created by U_M0CRG on 23.12.2014.
- */
 public class S3FileSave implements IFileSave {
     private static final Logger LOG = LoggerFactory.getLogger(S3FileSave.class);
 
-    private static String bucketName = "*** Provide bucket name ***";
-    private static String keyName = "*** Provide key ***";
+    private static String bucketName = "qrimagestore";
 
     @Override
     public String saveFile(InputStream fileInputStream, String fileName) {
         AmazonS3 s3client = new AmazonS3Client(new ProfileCredentialsProvider());
         try {
             LOG.info("Uploading a new object to S3 from a file");
-            File file = new File(fileName);
-            s3client.putObject(bucketName, keyName, fileInputStream, new ObjectMetadata());
+            s3client.putObject(bucketName, fileName, fileInputStream, new ObjectMetadata());
 
         } catch (AmazonServiceException ase) {
             System.out.println("Caught an AmazonServiceException, which " +
@@ -54,7 +49,7 @@ public class S3FileSave implements IFileSave {
 
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println("START");
-        InputStream is = new FileInputStream("C:\\fsg.png");
+        InputStream is = new FileInputStream("/home/vadim/tmp/volley.png");
         new S3FileSave().saveFile(is, "fsg.png");
         System.out.println("OK");
     }
