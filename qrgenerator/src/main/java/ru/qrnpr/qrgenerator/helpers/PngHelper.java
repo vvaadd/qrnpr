@@ -22,7 +22,7 @@ public class PngHelper {
         BufferedImage resimg = ImageUtils.getImageFromFile(model.getBgimgPath());
         BufferedImage qrImage = QrCodeGenerator.createQrImage(model, renderer);
         resimg.createGraphics();
-        resimg.getGraphics().drawImage(qrImage, 0, 0, null);
+        resimg.getGraphics().drawImage(qrImage, model.getPosX(), model.getPosY(), null);
 
         boolean check = QRCodeChecker.isQRCodeCorrect(model.getData(), resimg);
         LOG.info("Check result is {}", check);

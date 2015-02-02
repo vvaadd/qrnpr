@@ -33,7 +33,7 @@ public class QRCodeChecker {
             BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
             return new MultiFormatReader().decode(bitmap, Collections.<DecodeHintType, Object>emptyMap());
         } catch (NotFoundException nfe) {
-            LOG.warn("Exception during checking image.", nfe);
+            LOG.warn("Exception during checking image. Barcode not found", nfe);
             return null;
         }
     }

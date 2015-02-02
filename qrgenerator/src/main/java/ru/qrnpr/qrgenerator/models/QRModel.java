@@ -13,6 +13,8 @@ public class QRModel {
     private int size;
     private String type = "png";
     private Color color;
+    private int posX;
+    private int posY;
 
     public String getBgimgPath() {
         return bgimgPath;
@@ -60,5 +62,21 @@ public class QRModel {
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public int getPosX() {
+        return posX;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public int getPosY() {
+        return posY;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
     }
 }
