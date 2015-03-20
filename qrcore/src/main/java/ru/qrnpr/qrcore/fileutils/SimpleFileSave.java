@@ -2,6 +2,7 @@ package ru.qrnpr.qrcore.fileutils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import ru.qrnpr.qrcore.constants.Params;
 
 import java.io.*;
 
@@ -15,22 +16,21 @@ public class SimpleFileSave implements IFileSave {
     public String saveFile(InputStream fileInputStream, String fileName) {
         LOG.info("SimpleFileSave saveFile with fileName - " + fileName);
         try {
-            String filePath = "/home/vadim/tmp/" + fileName;
+            String filePath = Params.FILE_PATH + fileName;
 
-            OutputStream outpuStream = new FileOutputStream(new File(filePath));
+            OutputStream outputStream = new FileOutputStream(new File(filePath));
             int read = 0;
             byte[] bytes = new byte[1024];
 
-            outpuStream = new FileOutputStream(new File(filePath));
             while ((read = fileInputStream.read(bytes)) != -1) {
-                outpuStream.write(bytes, 0, read);
+                outputStream.write(bytes, 0, read);
             }
-            outpuStream.flush();
-            outpuStream.close();
+            outputStream.flush();
+            outputStream.close();
 
             return filePath;
         } catch (IOException e) {
-            e.printStackTrace();
+            LOG.warn("Can't save file", e);
         }
         return null;
     }

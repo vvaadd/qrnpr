@@ -4,6 +4,9 @@ dependencies {
     compile project(":qrcore")
     compile project(":qrgenerator")
 
-    compile "org.glassfish.jersey.containers:jersey-container-servlet:2.14"
-    compile "org.glassfish.jersey.media:jersey-media-multipart:2.14"
+    compile 'com.sun.jersey:jersey-server:1.19'
+    compile 'com.sun.jersey:jersey-core:1.19'
+    compile 'com.sun.jersey:jersey-servlet:1.19'
+    compile 'com.sun.jersey.contribs:jersey-multipart:1.19'
+    compile 'com.sun.jersey:jersey-json:1.19'
 }

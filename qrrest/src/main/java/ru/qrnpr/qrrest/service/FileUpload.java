@@ -1,8 +1,8 @@
 package ru.qrnpr.qrrest.service;
 
 
-import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
-import org.glassfish.jersey.media.multipart.FormDataParam;
+import com.sun.jersey.core.header.FormDataContentDisposition;
+import com.sun.jersey.multipart.FormDataParam;
 import ru.qrnpr.qrcore.fileutils.IFileSave;
 import ru.qrnpr.qrcore.fileutils.SimpleFileSave;
 
@@ -34,12 +34,7 @@ public class FileUpload {
         String fileName = contentDispositionHeader.getFileName();
 
         IFileSave fileSave = new SimpleFileSave();
-
-        fileSave.saveFile(fileInputStream, fileName);
-
-        String output = "File saved to server location : " + fileName;
-
-        return Response.status(200).entity(output).build();
-
+        String savedFile = fileSave.saveFile(fileInputStream, fileName);
+        return Response.status(200).entity(savedFile).build();
     }
 }
