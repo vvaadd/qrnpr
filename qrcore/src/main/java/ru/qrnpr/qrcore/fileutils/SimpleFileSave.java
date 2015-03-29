@@ -28,7 +28,7 @@ public class SimpleFileSave implements IFileSave {
             outputStream.flush();
             outputStream.close();
 
-            return filePath;
+            return Params.FILE_STORE_URL + fileName;
         } catch (IOException e) {
             LOG.warn("Can't save file", e);
         }

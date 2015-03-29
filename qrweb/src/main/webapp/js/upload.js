@@ -4,11 +4,10 @@ $(document).ready(function () {
         fileName: "file",
         multiple: false,
         onSuccess: function (files, data, xhr, pd) {
-            var filePath = data;
-            console.log(filePath);
+            //var obj = jQuery.parseJSON(data);
             // TODO выбрать функцию
             $('#uploadedImage').append(
-                '<img src="' + filePath + '">'
+                '<img src="' + data.url + '" height="' + data.height + '" width="' + data.width + '">'
             );
         }
     });

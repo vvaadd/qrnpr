@@ -6,4 +6,6 @@ package ru.qrnpr.qrcore.constants;
 public class Params {
     // "/home/vadim/tmp/"
     public static final String FILE_PATH = "D:/IdeaProjects/qrnpr/temp/";
+
+    public static final String FILE_STORE_URL = "/qrfilestore/rest/";
 }
