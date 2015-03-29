@@ -3,6 +3,7 @@ qrweb/qrweb.iml
 qrgenerator/qrgenerator.iml
 qrrest/qrrest.iml
 qrcore/qrcore.iml
+qrfilestore/qrfilestore.iml
 .idea
 gradle
 gradlew
