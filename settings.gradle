@@ -2,3 +2,5 @@ rootProject.name = 'qrnpr'
 
 include 'qrgenerator', 'qrweb', 'qrrest', 'qrcore'
 
+include 'qrfilestore'
+
