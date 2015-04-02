@@ -1,121 +1,54 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EaselJS Example</title>
+
     <script src="https://code.createjs.com/easeljs-0.8.0.min.js"></script>
+
     <script>
+        var bgSrc = new Image();
+        var bg;
 
-	var stage;
-	var isDrawing;
-	var drawingCanvas;
-	var oldPt;
-	var oldMidPt;
-	var displayCanvas;
-	var image;
-	var bitmap;
-	var maskFilter;
-	var cursor;
-	var text;
-	var blur;
+        function init() {
+            var stage = new createjs.Stage("qrCanvas");
 
-	function init() {
-		examples.showDistractor();
+            bgSrc.src = 'https://tatica.fedorapeople.org/Themes/F15/background.png';
+            bgSrc.name = 'bg';
+            bg = new createjs.Bitmap(bgSrc);
+            stage.addChild(bg);
 
-		image = new Image();
-		image.onload = handleComplete;
-		image.src = "../_assets/art/flowers.jpg";
+            stage.mouseMoveOutside = true;
 
-		stage = new createjs.Stage("testCanvas");
-		text = new createjs.Text("Loading...", "20px Arial", "#FFF");
-		text.set({x: stage.canvas.width / 2, y: stage.canvas.height - 40});
-		text.textAlign = "center";
-	}
+//            var qr = new createjs.Shape();
+//            qr.graphics.beginFill("DeepSkyBlue").drawCircle(0, 0, 50);
+//            stage.addChild(qr);
+            var qrsrc = new Image();
+            qrsrc.src = 'img/daisy.png';
+            var qr = new createjs.Bitmap(qrsrc);
+            stage.addChild(qr);
 
-	function handleComplete() {
-		examples.hideDistractor();
-		createjs.Touch.enable(stage);
-		stage.enableMouseOver();
+            var dragger = new createjs.Container();
+//            dragger.x = dragger.y = 100;
+            dragger.addChild(qr);
+            stage.addChild(dragger);
 
-		stage.addEventListener("stagemousedown", handleMouseDown);
-		stage.addEventListener("stagemouseup", handleMouseUp);
-		stage.addEventListener("stagemousemove", handleMouseMove);
-		drawingCanvas = new createjs.Shape();
-		bitmap = new createjs.Bitmap(image);
+            dragger.on("pressmove", function (evt) {
+                // currentTarget will be the container that the event listener was added to:
+                evt.currentTarget.x = evt.stageX;
+                evt.currentTarget.y = evt.stageY;
+                // make sure to redraw the stage to show the change:
+                stage.update();
+            });
 
-		blur = new createjs.Bitmap(image);
-		blur.filters = [new createjs.BlurFilter(24, 24, 2), new createjs.ColorMatrixFilter(new createjs.ColorMatrix(60))];
-		blur.cache(0, 0, 960, 400);
+            stage.update();
+        }
+    </script>
 
-		text.text = "Click and Drag to Reveal the Image.";
-
-		stage.addChild(blur, text, bitmap);
-		updateCacheImage(false);
-
-		cursor = new createjs.Shape(new createjs.Graphics().beginFill("#FFFFFF").drawCircle(0, 0, 25));
-		cursor.cursor = "pointer";
-
-		stage.addChild(cursor);
-	}
-
-	function handleMouseDown(event) {
-		oldPt = new createjs.Point(stage.mouseX, stage.mouseY);
-		oldMidPt = oldPt;
-		isDrawing = true;
-	}
-
-	function handleMouseMove(event) {
-		cursor.x = stage.mouseX;
-		cursor.y = stage.mouseY;
-
-		if (!isDrawing) {
-			stage.update();
-			return;
-		}
-
-		var midPoint = new createjs.Point(oldPt.x + stage.mouseX >> 1, oldPt.y + stage.mouseY >> 1);
-
-		drawingCanvas.graphics.setStrokeStyle(40, "round", "round")
-				.beginStroke("rgba(0,0,0,0.2)")
-				.moveTo(midPoint.x, midPoint.y)
-				.curveTo(oldPt.x, oldPt.y, oldMidPt.x, oldMidPt.y);
-
-		oldPt.x = stage.mouseX;
-		oldPt.y = stage.mouseY;
-
-		oldMidPt.x = midPoint.x;
-		oldMidPt.y = midPoint.y;
-
-		updateCacheImage(true);
-	}
-
-	function handleMouseUp(event) {
-		updateCacheImage(true);
-		isDrawing = false;
-	}
-
-	function updateCacheImage(update) {
-		if (update) {
-			drawingCanvas.updateCache();
-		} else {
-			drawingCanvas.cache(0, 0, image.width, image.height);
-		}
-
-		maskFilter = new createjs.AlphaMaskFilter(drawingCanvas.cacheCanvas);
-
-		bitmap.filters = [maskFilter];
-		if (update) {
-			bitmap.updateCache(0, 0, image.width, image.height);
-		} else {
-			bitmap.cache(0, 0, image.width, image.height);
-		}
-
-		stage.update();
-	}
-
-</script>
-    <title></title>
 </head>
+
 <body onload="init();">
-<canvas id="demoCanvas" width="500" height="300"></canvas>
+<canvas id="qrCanvas" width="500" height="300"></canvas>
+</body>
 </body>
 </html>
