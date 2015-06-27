@@ -3,4 +3,8 @@ apply plugin: 'war'
 dependencies{
     compile project(":qrgenerator")
     compile project(":qrrest")
+
+    compile 'org.springframework.security:spring-security-web:3.2.7.RELEASE'
+    compile 'org.springframework.security:spring-security-config:3.2.7.RELEASE'
+    compile 'org.springframework:spring-core:4.1.6.RELEASE'
 }
