@@ -1,3 +1,23 @@
+$(function () {
+    $('#qrform').submit(function () {
+        var data = $('#result').text(JSON.stringify($('form').serializeObject()));
+        var posting = $.ajax({
+            type: "POST",
+            url: "rest/qr/createqr/",
+            data: JSON.stringify($('form').serializeObject()),
+            dataType: "json",
+            contentType: 'application/json'
+        });
+            
+        // Put the results in a div
+        posting.done(function (data) {
+            var content = $(data).find("#content");
+            $("#result").empty().append(content);
+        });
+        return false;
+    });
+});
+
 $.fn.serializeObject = function () {
     var o = {};
     var a = this.serializeArray();
@@ -13,25 +33,3 @@ $.fn.serializeObject = function () {
     });
     return o;
 };
-
-$(function () {
-    $('#qrform').submit(function () {
-        var data = $('#result').text(JSON.stringify($('form').serializeObject()));
-        var posting = $.ajax({
-            type: "POST",
-            url: "rest/qr/createqr/",
-            data: JSON.stringify($('form').serializeObject()),
-            dataType: "json",
-            contentType: 'application/json'
-            
-        });
-            
-    // Put the results in a div
-    posting.done(function (data) {
-        var content = $(data).find("#content");
-        $("#result").empty().append(content);
-    });
-    return false;
-});
-})
-;
