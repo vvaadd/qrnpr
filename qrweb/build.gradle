@@ -1,6 +1,17 @@
 apply plugin: 'war'
 
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
 dependencies{
     compile project(":qrgenerator")
     compile project(":qrrest")
+
+    compile 'org.thymeleaf:thymeleaf:2.1.4.RELEASE'
+    compile 'org.thymeleaf:thymeleaf-spring4:2.1.4.RELEASE'
+    compile 'org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE'
+
+    provided 'javax.servlet:servlet-api:2.5'
 }
