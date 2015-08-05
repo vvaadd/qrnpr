@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login page</title>
     <meta charset="utf-8"/>
@@ -18,11 +18,17 @@
 
 <div th:fragment="login">
     <form th:action="@{/perform_login}" method="post">
-        <label for="username">Username</label>:
-        <input type="text" id="username" name="username" autofocus="autofocus"/> <br/>
-        <label for="password">Password</label>:
-        <input type="password" id="password" name="password"/> <br/>
-        <input type="submit" value="Log in"/>
+        <table>
+            <tr>
+                <td><label for="username">Username</label>:</td>
+                <td><input type="text" id="username" name="username" autofocus="autofocus"/> <br/></td>
+                <td><input type="submit" value="Log in"/></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label>:</td>
+                <td><input type="password" id="password" name="password"/> <br/></td>
+            </tr>
+        </table>
     </form>
 </div>
 <p><a href="../index.html" th:href="@{/index.html}">Back to home page</a></p>
