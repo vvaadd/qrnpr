@@ -10,3 +10,5 @@ gradlew
 gradlew.bat
 qrnpr.ipr
 qrnpr.iws
+.gradle/
+build/
